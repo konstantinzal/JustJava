@@ -27,8 +27,10 @@ public class MainActivity extends AppCompatActivity {
     public void submitOrder(View view) {
         CheckBox whippedCheckBox = (CheckBox) findViewById(R.id.checkbox_whipped_cream);
         boolean isWhipped = whippedCheckBox.isChecked();
+        CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.checkbox_chocolate);
+        boolean isChocolate = chocolateCheckBox.isChecked();
         int price = calculatePrice();
-        displayMessage(createOrderSummary(price, isWhipped));
+        displayMessage(createOrderSummary(price, isWhipped, isChocolate));
     }
 
 
@@ -65,9 +67,10 @@ public class MainActivity extends AppCompatActivity {
         orderSummaryTextView.setText(message);
     }
 
-    private String createOrderSummary(int priceOfOrder, boolean isWhipped){
+    private String createOrderSummary(int priceOfOrder, boolean addWhipped, boolean addChocolate){
         return "Name: Kaptain Kosti" +
-                "\nAdd Whipped Cream? " + isWhipped +
+                "\nAdd Whipped Cream? " + addWhipped +
+                "\nAdd Chocolate? " + addChocolate +
                 "\nQuantity: " + quantity +
                 "\nTotal: " + NumberFormat.getCurrencyInstance(Locale.FRANCE).format(priceOfOrder) +
                 "\nThank you!";
