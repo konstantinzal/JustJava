@@ -3,6 +3,7 @@ package com.peekily.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -24,8 +25,10 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view) {
+        CheckBox whippedCheckBox = (CheckBox) findViewById(R.id.checkbox_whipped_cream);
+        boolean isWhipped = whippedCheckBox.isChecked();
         int price = calculatePrice();
-        displayMessage(createOrderSummary(price));
+        displayMessage(createOrderSummary(price, isWhipped));
     }
 
 
@@ -62,11 +65,12 @@ public class MainActivity extends AppCompatActivity {
         orderSummaryTextView.setText(message);
     }
 
-    private String createOrderSummary(int priceOfOrder){
-        return "Name: Kaptain Kunal\n" +
-                "Quantity: " + quantity +"\n" +
-                "Total: " + NumberFormat.getCurrencyInstance(Locale.FRANCE).format(priceOfOrder) +"\n" +
-                "Thank you!";
+    private String createOrderSummary(int priceOfOrder, boolean isWhipped){
+        return "Name: Kaptain Kosti" +
+                "\nAdd Whipped Cream? " + isWhipped +
+                "\nQuantity: " + quantity +
+                "\nTotal: " + NumberFormat.getCurrencyInstance(Locale.FRANCE).format(priceOfOrder) +
+                "\nThank you!";
     }
 
 
