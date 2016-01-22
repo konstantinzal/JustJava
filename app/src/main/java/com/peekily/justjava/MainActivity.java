@@ -2,9 +2,11 @@ package com.peekily.justjava;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -34,13 +36,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void increment(View view){
-        quantity = quantity +1;
+    public void increment(View view) {
+        quantity = quantity + 1;
         displayQuantity(quantity);
 
     }
-    public void decrement(View view){
-        quantity = quantity -1;
+
+    public void decrement(View view) {
+        quantity = quantity - 1;
         displayQuantity(quantity);
 
     }
@@ -50,24 +53,25 @@ public class MainActivity extends AppCompatActivity {
      * This method displays the given quantity value on the screen.
      */
     private void displayQuantity(int num) {
-        TextView quantityTextView = (TextView)  findViewById(R.id.quantity_text_view);
+        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + num);
     }
+
     /**
      * This method displays the given quantity value on the screen
      */
 
 
-    private int calculatePrice(){
-        return quantity*5;
+    private int calculatePrice() {
+        return quantity * 5;
     }
 
     private void displayMessage(String message) {
-        TextView orderSummaryTextView =(TextView) findViewById(R.id.order_summary_text_view);
+        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setText(message);
     }
 
-    private String createOrderSummary(int priceOfOrder, boolean addWhipped, boolean addChocolate){
+    private String createOrderSummary(int priceOfOrder, boolean addWhipped, boolean addChocolate) {
         return "Name: Kaptain Kosti" +
                 "\nAdd Whipped Cream? " + addWhipped +
                 "\nAdd Chocolate? " + addChocolate +
@@ -76,6 +80,24 @@ public class MainActivity extends AppCompatActivity {
                 "\nThank you!";
     }
 
+    public void chocolateCheck(View view) {
+        CheckBox chocolateCheckBox = (CheckBox) view;
+
+        Log.v("MainActivity", "We are in chocolateCheck and the checkBox value is: " + chocolateCheckBox.isChecked());
+        if (chocolateCheckBox.isChecked()) {
+            Log.v("MainActivity", "test");
+            Toast.makeText(this, "you glutton, you added chocolate", Toast.LENGTH_LONG);
+        }
+
+    }
+
+    public void creamCheck(View view) {
+        CheckBox creamCheckBox = (CheckBox) view;
+        if (creamCheckBox.isChecked()) {
+            Toast.makeText(this, "added cream!:D", Toast.LENGTH_LONG);
+        }
+
+    }
 
 
 }
